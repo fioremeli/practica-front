@@ -1,0 +1,181 @@
+/* ============================================================
+   EXIMIA CODE · TP1 · CSS GLOBAL
+   Comentarios por secciones para facilitar revisión docente.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+/* VARIABLES: centralizan identidad visual, contraste, tipografías, foco y medidas para mantener coherencia. */
+:root {
+  --bg-primary:#FFFFFF; --bg-secondary:#F4F7F6; --bg-surface:#E3EBE8;
+  --text-primary:#070D1F; --text-secondary:#1E293B; --text-on-accent:#FFFFFF;
+  --border-color:#3A506B; --icon-color:#005F73; --focus-ring:#D9381E; --error-color:#B42318;
+  --focus-outline:3px solid var(--focus-ring);
+  --accent-primary:#00684D; --accent-secondary:#005A80; --accent-hover:#070D1F;
+  --shadow-sm:0 2px 8px rgba(7,13,31,.06); --shadow-md:0 4px 16px rgba(7,13,31,.10);
+  --transition-speed:.22s; --font-main:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --heading:'Space Grotesk',var(--font-main); --radius:18px; --max:1180px;
+}
+[data-theme="dark"] { --bg-primary:#0B132B; --bg-secondary:#111C3D; --bg-surface:#1C2541;
+  --text-primary:#FFFFFF; --text-secondary:#E4E9F0; --text-on-accent:#070D1F;
+  --border-color:#6B829B; --icon-color:#90E0EF; --focus-ring:#FFB703; --error-color:#FF9B91; --focus-outline:3px solid var(--focus-ring);
+  --accent-primary:#06D6A0; --accent-secondary:#48CAE4; --accent-hover:#00B4D8;
+}
+/* BASE: evita cálculos inesperados de tamaño y reduce el riesgo de desbordamiento horizontal. */
+*{box-sizing:border-box} html{scroll-behavior:smooth;overflow-x:clip} body{margin:0;background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-main);line-height:1.6;transition:background .22s,color .22s;overflow-x:clip} img{max-width:100%;height:auto} a{color:inherit}
+:focus-visible{outline:var(--focus-outline);outline-offset:3px} button,input,textarea,select{font:inherit}
+.skip-link{position:fixed;left:1rem;top:-100px;background:var(--accent-primary);color:var(--text-on-accent);padding:.7rem 1rem;border-radius:10px;z-index:9999}.skip-link:focus{top:1rem}
+.container{width:min(calc(100% - 2rem),var(--max));margin-inline:auto}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+/* HEADER/NAV: cabecera sticky para que las rutas principales permanezcan disponibles durante el recorrido. */
+.site-header{position:sticky;top:0;z-index:1000;background:color-mix(in srgb,var(--bg-primary) 94%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--border-color);box-shadow:var(--shadow-sm)}
+
+/* MARCA: mantiene el nombre junto al logo para una lectura compacta y refuerza la identidad tecnológica con Orbitron. */
+.brand-link{display:inline-flex;align-items:center;gap:11px;min-width:0;text-decoration:none;color:var(--text-primary)}
+.brand-name{font-family:"Orbitron",sans-serif;font-size:1rem;font-weight:700;letter-spacing:.02em;white-space:nowrap}
+
+.navbar{min-height:74px;display:flex;align-items:center;gap:1rem}.logo-img{width:180px;height:45px;object-fit:contain}
+[data-theme="dark"] .logo-img{filter:drop-shadow(0 0 14px rgba(255,255,255,.75)) drop-shadow(0 0 30px rgba(72,202,228,.35))}.nav-toggle{display:none}.nav-list{margin:0 0 0 auto;padding:0;list-style:none;display:flex;align-items:center;gap:.35rem}.nav-list a,.theme-toggle{display:inline-flex;align-items:center;gap:.45rem;padding:.65rem .8rem;border-radius:10px;text-decoration:none;font-weight:700;color:var(--text-secondary);background:transparent;border:0;cursor:pointer}.nav-list a:hover,.theme-toggle:hover{background:var(--bg-surface);color:var(--text-primary)}.theme-toggle .theme-label{font-size:.85rem}.theme-icon{font-size:1.1rem}
+/* HERO: jerarquiza la propuesta principal y mantiene una CTA clara sin saturar la interfaz. */
+.hero{padding:5rem 0 4rem;background:linear-gradient(135deg,var(--bg-secondary),var(--bg-primary))}.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center}.eyebrow{display:inline-flex;padding:.35rem .65rem;border:1px solid var(--border-color);border-radius:999px;color:var(--accent-secondary);font-weight:800;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em}.hero h1{font-family:var(--heading);font-size:clamp(2.3rem,5vw,4.4rem);line-height:1.02;margin:.9rem 0 1rem;max-width:850px}.hero p{font-size:1.08rem;color:var(--text-secondary);max-width:680px}.hero-media{margin:0}.hero-media img{width:100%;border-radius:24px;border:1px solid var(--border-color);box-shadow:var(--shadow-md)}.hero-actions{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.5rem}.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:46px;padding:.7rem 1rem;border-radius:10px;border:2px solid transparent;text-decoration:none;font-weight:800;cursor:pointer;transition:transform var(--transition-speed),background var(--transition-speed),color var(--transition-speed)}.btn:hover{transform:translateY(-2px)}.btn-primary{background:var(--accent-primary);color:var(--text-on-accent)}.btn-primary:hover{background:var(--accent-hover);color:var(--bg-primary)}.btn-secondary{background:transparent;border-color:var(--border-color);color:var(--text-primary)}.btn-secondary:hover{background:var(--bg-surface)}
+/* SECCIONES: espaciado uniforme y scroll-margin facilitan la navegación interna mediante anclas. */
+.section{padding:4.5rem 0;scroll-margin-top:90px}.section.alt{background:var(--bg-secondary)}.section-heading{display:flex;align-items:end;justify-content:space-between;gap:1rem;margin-bottom:2rem}.section-heading h2{font-family:var(--heading);font-size:clamp(1.8rem,3vw,2.6rem);margin:0}.section-heading p{max-width:600px;color:var(--text-secondary);margin:0}.team-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem}.team-card,.profile-card,.info-card,.contact-card{background:var(--bg-primary);border:1px solid var(--border-color);border-radius:var(--radius);box-shadow:var(--shadow-sm);overflow:hidden}.team-card{display:flex;flex-direction:column;min-width:0}.team-card-image-link{display:block;line-height:0}.team-card-image-link:focus-visible{outline:var(--focus-outline);outline-offset:-3px}.team-card-body{min-width:0}.team-card img{width:100%;aspect-ratio:1;object-fit:cover}.team-card-body{padding:1rem}.team-card h3{margin:.2rem 0}.role{color:var(--accent-secondary);font-weight:800;font-size:.9rem}.muted{color:var(--text-secondary)}.card-link{display:inline-flex;margin-top:.8rem;color:var(--accent-secondary);font-weight:800;text-decoration:none}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem}.stat{padding:1.2rem;border-left:4px solid var(--accent-primary);background:var(--bg-surface);border-radius:0 14px 14px 0}.stat strong{display:block;font:700 1.5rem var(--heading)}
+/* FORMULARIO: Grid separa información y formulario en escritorio y colapsa a una columna en pantallas pequeñas. */
+.contact-layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:1.2rem}.contact-card{padding:1.5rem}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.field{display:flex;flex-direction:column;gap:.35rem}.field.full{grid-column:1/-1}.field label{font-weight:800}.field input,.field textarea{width:100%;border:2px solid var(--border-color);border-radius:10px;background:var(--bg-primary);color:var(--text-primary);padding:.75rem}.field textarea{min-height:150px;resize:vertical}
+/* FOOTER: navegación secundaria y tecnologías, como información complementaria al contenido principal. */
+.site-footer{padding:2rem 0;background:var(--bg-secondary);border-top:1px solid var(--border-color)}.footer-grid{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}.footer-links{display:flex;gap:1rem;flex-wrap:wrap}.footer-links a{font-weight:700;text-decoration:none}.tech-badges{display:flex;gap:.5rem;flex-wrap:wrap}.badge{padding:.3rem .55rem;border-radius:999px;background:var(--bg-surface);border:1px solid var(--border-color);font-size:.78rem;font-weight:800}
+/* PERFIL: la composición usa Grid para separar presentación y contenido visual sin depender de frameworks. */
+/* PERFIL: Grid mantiene texto a la izquierda y fotografía a la derecha en tablet y escritorio; esto crea una lectura en dos columnas y aprovecha mejor el espacio horizontal. La foto usa un límite visual de 600px aunque el archivo físico sea 1200x1200 para conservar nitidez y evitar CLS con width/height declarados. */
+.profile-hero{padding:4rem 0 3rem;background:linear-gradient(135deg,var(--bg-secondary),var(--bg-primary))}.profile-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:3rem;align-items:center}.profile-hero h1{font:700 clamp(2.5rem,5vw,4.5rem)/1 var(--heading);margin:.4rem 0}.profile-photo{margin:0;justify-self:start;width:100%;display:flex;justify-content:flex-start}.profile-photo img{width:100%;max-width:600px;aspect-ratio:1/1;object-fit:cover;border-radius:22px;border:1px solid var(--border-color);box-shadow:var(--shadow-md);display:block}.meta{display:flex;flex-wrap:wrap;gap:.6rem;margin:1rem 0}.meta span{padding:.4rem .7rem;background:var(--bg-surface);border:1px solid var(--border-color);border-radius:999px;font-weight:700}.anchor-bar{position:sticky;top:74px;z-index:900;background:var(--bg-primary);border-block:1px solid var(--border-color)}.anchor-list{display:flex;gap:.4rem;overflow-x:auto;overflow-y:hidden;padding:.65rem 0;margin:0;list-style:none;scrollbar-width:thin}.anchor-list li{flex:0 0 auto}.anchor-list a{white-space:nowrap;text-decoration:none;padding:.55rem .7rem;border-radius:9px;font-weight:800;color:var(--text-secondary)}.anchor-list a:hover{background:var(--bg-surface);color:var(--text-primary)}.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}.skill{padding:1.2rem;background:var(--bg-surface);border:1px solid var(--border-color);border-radius:16px;text-align:center}.skill i,.skill-icon{font-size:2.5rem;color:var(--icon-color);font-weight:800}.skill-icon{display:block;letter-spacing:.02em}.skill strong{display:block;margin-top:.5rem}.media-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}.movie-card,.album-card{background:var(--bg-primary);border:1px solid var(--border-color);border-radius:16px;overflow:hidden;box-shadow:var(--shadow-sm)}.movie-card img{width:100%;aspect-ratio:2/3;object-fit:cover}.movie-info,.album-info{padding:1rem}.movie-info h3,.album-title{margin:0;font-size:1rem}.album-artist{margin:.2rem 0 0;color:var(--text-secondary)}.album-media{position:relative;margin:0;aspect-ratio:1/1;background:#121212;overflow:hidden}.album-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}.album-card:hover .album-img{transform:scale(1.03)}.play-btn{position:absolute;right:10px;bottom:10px;width:48px;height:48px;border-radius:50%;border:0;background:#1ed760;color:#000;display:grid;place-items:center;cursor:pointer;opacity:0;transform:translateY(8px);transition:.25s;box-shadow:0 8px 16px rgba(0,0,0,.3)}.play-btn svg{width:22px}.album-card:hover .play-btn,.album-card:focus-within .play-btn{opacity:1;transform:none}.album-card iframe{width:100%;height:100%;border:0}.dynamic-box{margin-top:1.2rem;padding:1rem;border:1px dashed var(--border-color);border-radius:14px;background:var(--bg-surface)}.result{font-weight:800;color:var(--accent-secondary)}.profile-nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;align-items:stretch;padding:2rem 0}.profile-nav .card-link{margin-top:0;width:100%;min-width:0;min-height:52px;padding:.75rem .6rem;display:flex;align-items:center;justify-content:center;text-align:center;overflow-wrap:anywhere}.rest-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}.rest-card{padding:1rem;text-decoration:none;background:var(--bg-primary);border:1px solid var(--border-color);border-radius:16px}.rest-card img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px}.rest-card h3{margin:.6rem 0 .1rem;font-size:1rem}
+/* BITÁCORA: timeline y checklist organizan información secundaria de forma escaneable. */
+/* BITÁCORA */
+.timeline{display:grid;gap:1rem}.timeline article{padding:1.3rem 1.5rem;border-left:5px solid var(--accent-primary);background:var(--bg-primary);border-radius:0 16px 16px 0;border-block:1px solid var(--border-color);border-right:1px solid var(--border-color)}.timeline h3{margin:0}.checklist{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem}.check{padding:.9rem;background:var(--bg-surface);border-radius:12px;border:1px solid var(--border-color)}
+/* ACCESIBILIDAD DE MOVIMIENTO: respeta la preferencia del sistema y elimina animaciones no esenciales. */
+/* MENOS MOVIMIENTO */
+
+/* Responsive safety: Grid/Flex children may shrink without creating page-level overflow. */
+.hero-grid,.profile-grid,.contact-layout,.section-heading,.footer-grid,.team-card,.profile-card,.contact-card{min-width:0}
+.hero p,.section-heading p,.muted,.role,.dynamic-message{overflow-wrap:anywhere}
+.team-card img,.profile-photo img,.movie-card img,.album-img,.rest-card img{display:block}
+
+/* Interactive cards keep a visible focus state without adding heavy animation. */
+.team-card-image-link:hover img{transform:scale(1.015)}
+.team-card-image-link img{transition:transform var(--transition-speed)}
+
+/* NAVEGACIÓN INFERIOR: tres columnas iguales mantienen anterior/equipo, inicio y siguiente centrados y distribuidos; esto evita acumulación a la izquierda en móviles. */
+@media (max-width:767px){.profile-grid{grid-template-columns:1fr;gap:2rem}.profile-photo{justify-self:stretch;justify-content:center}.profile-photo img{max-width:600px}.profile-nav{grid-template-columns:repeat(3,minmax(0,1fr));gap:.35rem}.profile-nav .card-link{font-size:.78rem;padding:.65rem .35rem;line-height:1.25}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+/* BREAKPOINT 1200: reduce columnas para conservar legibilidad en desktop compacto/tablet horizontal. */
+/* <=1200: se compactan grids sin perder legibilidad */
+@media (max-width:1200px){.team-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.hero-grid{gap:2rem}.rest-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.skills-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.media-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+/* BREAKPOINT 900: convierte el menú en desplegable y reorganiza los grids para tablet/móvil. */
+/* <=900: tablet */
+@media (max-width:900px){.nav-toggle{display:inline-flex;margin-left:auto;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid var(--border-color);border-radius:10px;background:var(--bg-primary);color:var(--text-primary);cursor:pointer}.nav-list{display:none;position:absolute;left:1rem;right:1rem;top:68px;padding:.6rem;background:var(--bg-primary);border:1px solid var(--border-color);border-radius:16px;box-shadow:var(--shadow-md);flex-direction:column;align-items:stretch}.nav-list.is-open{display:flex}.nav-list a,.theme-toggle{justify-content:flex-start}.hero-grid,.contact-layout{grid-template-columns:1fr}.profile-photo{justify-self:end}.profile-photo img{width:100%;max-width:600px}.skills-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.media-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.rest-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.section-heading{align-items:flex-start;flex-direction:column}}
+/* BREAKPOINT 400: prioriza una sola columna, botones amplios y navegación sin overflow en móvil pequeño. */
+/* <=400: móvil pequeño; todos los componentes caben sin scroll horizontal */
+@media (max-width:400px){.container{width:min(calc(100% - 1rem),var(--max))}.navbar{min-height:64px}.logo-img{width:145px;height:40px}.theme-toggle .theme-label{display:none}.hero{padding:3rem 0}.hero h1{font-size:2.15rem}.hero p{font-size:1rem}.hero-actions .btn{width:100%}.section{padding:3rem 0}.team-grid,.media-grid,.skills-grid,.rest-grid,.stats{grid-template-columns:1fr}.media-grid{gap:.8rem}.contact-card{padding:1rem}.form-grid{gap:.75rem}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.profile-hero h1{font-size:2.5rem}.anchor-bar{top:64px}.anchor-list{gap:.1rem}.anchor-list a{font-size:.82rem}.footer-grid{align-items:flex-start;flex-direction:column}.play-btn{opacity:1;transform:none}}
+@media (min-width:401px) and (max-width:899px){.team-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* AJUSTES FINALES UX/UI: estabilizan demos, anclas, foco y navegación en dispositivos pequeños. */
+/* ==========================================================
+   AJUSTES UX/UI SOLICITADOS · TP1 GRUPO 12
+   ========================================================== */
+
+/* El bloque de demo mantiene una composición estable: frase arriba,
+   botón debajo. Evitamos que el cambio de texto modifique la posición
+   horizontal del botón entre clics. */
+.dynamic-box{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:.55rem;
+}
+.dynamic-box > strong{display:block}
+.dynamic-message{
+  margin:0;
+  min-height:2.8em;
+  line-height:1.45;
+  max-width:62ch;
+}
+.role-demo-btn{margin-top:.1rem}
+
+/* El anchor bar puede ocupar dos líneas en pantallas estrechas,
+   pero nunca genera scroll horizontal. */
+.anchor-bar{overflow-x:hidden}
+.anchor-list{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  align-items:center;
+  gap:.15rem;
+  padding:.35rem 0;
+  overflow:visible;
+}
+.anchor-list li{min-width:0}
+.anchor-list a{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  white-space:normal;
+  text-align:center;
+  padding:.4rem .5rem;
+  font-size:.88rem;
+  line-height:1.15;
+}
+
+/* Logo: halo más intenso y amplio para separar las líneas azules
+   del fondo oscuro. El logo conserva sus colores originales. */
+[data-theme="dark"] .logo-img{filter:drop-shadow(0 0 14px rgba(255,255,255,.75)) drop-shadow(0 0 30px rgba(72,202,228,.35));}
+
+/* Estructura móvil: Logo + toggle + hamburguesa. */
+@media (max-width:900px){
+  .navbar{position:relative;gap:.45rem}
+  .brand-link{min-width:0}
+  .logo-img{width:160px;height:42px}
+  .navbar > .theme-toggle{margin-left:auto;flex:0 0 auto}
+  .nav-toggle{margin-left:0;flex:0 0 44px}
+  .nav-list{
+    top:calc(100% + .45rem);
+    z-index:1000;
+  }
+  .nav-list a{gap:.65rem}
+  .anchor-list{justify-content:flex-start}
+}
+
+@media (max-width:400px){
+  .navbar{gap:.25rem}
+  .logo-img{width:132px;height:38px}
+  .navbar > .theme-toggle{width:42px;height:42px;padding:.35rem;justify-content:center}
+  .theme-toggle .theme-label{display:none}
+  .theme-icon{font-size:1.15rem}
+  .nav-toggle{width:42px;height:42px;flex-basis:42px}
+  .anchor-list{gap:.05rem;padding:.25rem 0}
+  .anchor-list a{font-size:.72rem;padding:.32rem .35rem;border-radius:7px}
+  .dynamic-message{min-height:4.2em}
+}
+.team-card-body .github-link{margin-top:.35rem}
+/* ==========================================================
+   ORDEN DE TABULACIÓN · PORTADA
+   El recorrido solicitado prioriza el contenido y deja el
+   enlace de salto disponible antes de volver a la cabecera.
+   ========================================================== */
+.tab-loop{
+  position:absolute;
+  width:1px;
+  height:1px;
+  padding:0;
+  margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;
+  border:0;
+}
+
+/* Validación y estado del formulario de contacto */
+.form-help{margin:.25rem 0 1rem;color:var(--text-secondary);font-size:.92rem}
+.form-error{min-height:1.25rem;margin:0;color:var(--error-color);font-size:.88rem;font-weight:700}
+.form-status{min-height:1.5rem;margin:.75rem 0 0;font-weight:700}
+.form-status.success{color:var(--accent-primary)}
+.form-status.error{color:var(--error-color)}
+.field input[aria-invalid="true"],.field textarea[aria-invalid="true"]{border-color:var(--error-color)}
+@media (prefers-reduced-motion: reduce){.form-status{transition:none}}

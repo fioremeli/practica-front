@@ -1,11 +1,173 @@
-<!doctype html><html lang="es"><head><title>Bitácora · Eximia Code</title><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Eximia Code · Grupo 12 · TP1 de desarrollo web frontend para logística inteligente B2B."><meta name="robots" content="index, follow"><meta name="theme-color" content="#00684D"><meta name="author" content="Grupo 12 · Eximia Code"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Orbitron:wght@500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css"><script defer src="js/main.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
-</head><body>
-<!-- Estructura semántica: header, main, sections y footer delimitan las regiones de contenido. -->
-<!-- Accesibilidad: los controles interactivos usan etiquetas, nombres accesibles y foco visible. -->
-<!-- Responsive: el layout se adapta a 1200 px, 900 px y 400 px mediante media queries. -->
-<!-- Performance: las imágenes fuera del primer viewport usan lazy loading y dimensiones explícitas. --><a class="skip-link" href="#contenido">Saltar al contenido</a>
-<!-- HEADER SEMÁNTICO: contiene marca, control de tema y navegación principal accesible. -->
-<header class="site-header"><nav class="navbar container" aria-label="Navegación principal"><a class="brand-link" href="index.html" aria-label="Eximia Code, inicio"><img class="logo-img" src="img/logo-eximia-code.webp" width="180" height="45" alt="Logo Eximia Code"><span class="brand-name">Eximia Code</span></a><button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Cambiar entre modo claro y oscuro"><span class="theme-icon" aria-hidden="true">☾</span><span class="theme-label">Modo oscuro</span></button><button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-principal"><span aria-hidden="true">☰</span></button><ul class="nav-list" id="menu-principal"><li><a href="index.html"><span aria-hidden="true">⌂</span><span>Inicio</span></a></li><li><a href="index.html#equipo"><span aria-hidden="true">♙</span><span>Equipo</span></a></li><li><a href="bitacora.html"><span aria-hidden="true">▤</span><span>Bitácora</span></a></li><li><a href="index.html#contacto"><span aria-hidden="true">✉</span><span>Contacto</span></a></li></ul></nav></header><!-- BITÁCORA: registra decisiones, pruebas y aprendizajes del proceso de desarrollo. -->
-<!-- MAIN SEMÁNTICO: delimita el contenido principal y permite que el skip link lo alcance directamente. -->
-<main id="contenido"><section class="section"><div class="container"><span class="eyebrow">Proceso</span><h1>Bitácora de desarrollo</h1><p class="muted">Registro del proceso del TP1: decisiones, problemas y ajustes realizados para que el código sea claro, mantenible y revisable.</p><div class="timeline"><article><h3>01 · Organización</h3><p>Se definieron cinco perfiles y responsabilidades: Data & Routing, Product & Frontend, Backend, UX/UI & QA y DevOps & Docs.</p></article><article><h3>02 · Arquitectura</h3><p>Se separaron responsabilidades en HTML por página, CSS global en css/style.css y scripts específicos por rol en js/. Las imágenes viven en img/.</p></article><article><h3>03 · Responsive y accesibilidad</h3><p>Breakpoints explícitos en 400 px, 900 px y 1200 px, foco visible, skip-link, labels, alt, navegación por teclado y prefers-reduced-motion.</p></article><article><h3>04 · Performance</h3><p>Logo, hero de portada y foto hero de cada perfil usan carga prioritaria. Tarjetas inferiores usan loading="lazy" y dimensiones explícitas para reducir CLS.</p></article><article><h3>05 · Interactividad</h3><p>Portada: optimización de rutas y tema persistente. Cada perfil tiene una interacción propia. Los álbumes usan patrón Facade.</p></article><article><h3>06 · Privacidad e IA</h3><p>Los avatares son ilustraciones de demostración para evitar exponer fotografías personales. La IA debe documentarse como asistente y cada resultado debe ser revisado y adaptado por el equipo.</p></article><article><h3>07 · Próxima evolución</h3><p>TP2: backend real, datos de rutas, pruebas automatizadas, medición de Core Web Vitals y reemplazo de placeholders.</p></article></div></div></section><section class="section alt"><div class="container"><h2>Checklist de revisión</h2><div class="checklist"><div class="check">✓ HTML5 semántico y navegación interna</div><div class="check">✓ CSS propio + Google Fonts</div><div class="check">✓ Responsive 400 / 900 / 1200 px</div><div class="check">✓ JavaScript portada + 5 perfiles</div><div class="check">✓ ALT, ARIA y foco visible</div><div class="check">✓ Lazy loading + fetchpriority</div><div class="check">✓ Código comentado y organizado por responsabilidad</div><div class="check">✓ Pruebas de navegación y accesibilidad documentadas</div></div></div></section></main><!-- FOOTER SEMÁNTICO: contiene navegación secundaria y tecnologías, sin competir con el contenido principal. -->
-<footer class="site-footer"><div class="container footer-grid"><div><strong>TP1 · Grupo 12 · Eximia Code</strong><div class="muted">© 2026 · Desarrollo web frontend · HTML5 + CSS3 + JavaScript</div></div><nav class="footer-links" aria-label="Navegación del pie"><a href="index.html">Inicio</a><a href="index.html#equipo">Equipo</a><a href="bitacora.html">Bitácora</a><a href="index.html#contacto">Contacto</a></nav><div class="tech-badges"><span class="badge">HTML5 semántico</span><span class="badge">Responsive</span><span class="badge">ARIA + ALT</span></div></div></footer></body></html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- METADATOS BÁSICOS -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bitácora · Eximia Code</title>
+  <meta name="description" content="Bitácora de desarrollo del Grupo 12: decisiones, problemas encontrados y cómo se resolvieron.">
+  <meta name="author" content="Grupo 12 · Eximia Code">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#00684D">
+  <meta name="color-scheme" content="light dark">
+  <link rel="canonical" href="https://practica-front-seven.vercel.app/bitacora.html">
+  <link rel="icon" type="image/webp" href="img/logo-96.webp">
+
+  <!-- REDES SOCIALES (Open Graph / Twitter) -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:title" content="Bitácora · Eximia Code">
+  <meta property="og:description" content="Bitácora de desarrollo del Grupo 12: decisiones, problemas encontrados y cómo se resolvieron.">
+  <meta property="og:url" content="https://practica-front-seven.vercel.app/bitacora.html">
+  <meta property="og:image" content="https://practica-front-seven.vercel.app/img/panel.webp">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- TEMA: se aplica antes de pintar para evitar el parpadeo claro→oscuro -->
+  <script>
+    try {
+      var t = localStorage.getItem('eximia-theme');
+      if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  </script>
+
+  <!-- TIPOGRAFÍAS: Google Fonts (preconnect + display=swap) e iconos Devicon con versión fija -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Orbitron:wght@500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css">
+
+  <!-- ESTILOS PROPIOS: un archivo por responsabilidad (ver README) -->
+  <link rel="stylesheet" href="css/01-variables.css">
+  <link rel="stylesheet" href="css/02-base.css">
+  <link rel="stylesheet" href="css/03-layout.css">
+  <link rel="stylesheet" href="css/04-portada.css">
+  <link rel="stylesheet" href="css/05-perfil.css">
+  <link rel="stylesheet" href="css/06-formularios.css">
+  <link rel="stylesheet" href="css/07-bitacora.css">
+  <link rel="stylesheet" href="css/08-responsive.css">
+  <link rel="stylesheet" href="css/09-accesibilidad.css">
+</head>
+<body id="top">
+  <a class="skip-link" href="#bitacora-titulo">Saltar al contenido principal</a>
+
+  <!-- HEADER: marca, cambio de tema y navegación principal -->
+  <header class="site-header">
+    <nav class="navbar container" aria-label="Navegación principal">
+      <a class="brand-link" href="index.html" aria-label="Eximia Code, volver al inicio">
+        <img class="logo-img" src="img/logo-96.webp" width="44" height="44" alt="" decoding="async">
+        <span class="brand-name">Eximia Code</span>
+      </a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Cambiar a modo oscuro">
+        <span class="theme-icon" aria-hidden="true">☾</span><span class="theme-label">Modo oscuro</span>
+      </button>
+      <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-principal">
+        <span aria-hidden="true">☰</span>
+      </button>
+      <ul class="nav-list" id="menu-principal">
+        <li><a href="index.html"><span aria-hidden="true">⌂</span><span>Inicio</span></a></li>
+        <li><a href="index.html#equipo"><span aria-hidden="true">♙</span><span>Equipo</span></a></li>
+        <li><a href="bitacora.html" aria-current="page"><span aria-hidden="true">▤</span><span>Bitácora</span></a></li>
+        <li><a href="index.html#contacto"><span aria-hidden="true">✉</span><span>Contacto</span></a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="contenido">
+
+    <!-- LÍNEA DE TIEMPO: decisiones de cada etapa -->
+    <section class="section">
+      <div class="container">
+        <span class="eyebrow">Proceso</span>
+        <h1 id="bitacora-titulo" tabindex="-1">Bitácora de desarrollo</h1>
+        <p class="muted">Registro del proceso del TP1: decisiones, problemas y ajustes realizados para que el código sea claro, mantenible y revisable.</p>
+        <ol class="timeline">
+          <li><article><h3>Etapa 1 · Organización</h3><p>Se definieron cinco perfiles y responsabilidades: Product &amp; Frontend, Backend, UX/UI &amp; QA, Data &amp; Routing y DevOps &amp; Docs. Se acordó que cada integrante mantiene su página, su script y sus commits.</p></article></li>
+          <li><article><h3>Etapa 2 · Arquitectura</h3><p>Un HTML por persona en la raíz, CSS dividido por responsabilidad en <code>css/</code>, JavaScript por módulo en <code>js/</code> y todas las imágenes en <code>img/</code>. La separación permite subir el trabajo en commits pequeños y revisables.</p></article></li>
+          <li><article><h3>Etapa 3 · Identidad visual</h3><p>Paleta verde y azul (logística + tecnología), tipografías Orbitron para marca, Space Grotesk para títulos e IBM Plex Sans para lectura. Se diseñaron tema claro y oscuro con contraste verificado y variables CSS centralizadas.</p></article></li>
+          <li><article><h3>Etapa 4 · Accesibilidad y preferencias</h3><p>Skip-link, foco visible, etiquetas en formularios, <code>alt</code> descriptivo, ARIA, navegación completa con Tab y respeto por <code>prefers-reduced-motion</code>, <code>prefers-contrast</code> y <code>prefers-color-scheme</code>.</p></article></li>
+          <li><article><h3>Etapa 5 · Interactividad</h3><p>Portada: optimización de rutas y tema persistente. Cada perfil: una demo propia de su rol. Discos: patrón facade para cargar Spotify sólo bajo demanda.</p></article></li>
+          <li><article><h3>Etapa 6 · Próxima evolución</h3><p>TP2: backend real, datos de rutas, pruebas automatizadas y medición de Core Web Vitals.</p></article></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- PROBLEMAS Y SOLUCIONES -->
+    <section class="section alt" aria-labelledby="problemas-titulo">
+      <div class="container">
+        <h2 id="problemas-titulo">Dificultades encontradas y cómo las resolvimos</h2>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de problemas y soluciones, desplazable">
+          <table class="problem-table">
+            <thead><tr><th scope="col">Dificultad</th><th scope="col">Solución</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Avatares de 89 a 153 KB y panel de 1200×1080</th><td>Se recomprimió a WebP: avatares 1200×1200 por debajo de 70 KB, panel 1200×1200 y pósters/discos por debajo de 40 KB. Se agregaron miniaturas de 400 px para las tarjetas, que antes descargaban la imagen completa.</td></tr>
+              <tr><th scope="row">Logo cuadrado (300×300) mostrado en una caja de 180×45</th><td>Se ajustó el tamaño a 44×44 px con <code>width</code> y <code>height</code> reales, eliminando el espacio vacío y evitando saltos de diseño.</td></tr>
+              <tr><th scope="row">Tab en el último enlace del menú devolvía el foco al título</th><td>Esa captura era una trampa de teclado. Se eliminó y se mantuvo el skip-link y el enlace «Volver arriba».</td></tr>
+              <tr><th scope="row"><code>aria-labelledby</code> apuntaba a un id inexistente en los perfiles</th><td>Se corrigió con ids únicos por sección (<code>contacto-titulo</code>) y se revisaron todos los formularios.</td></tr>
+              <tr><th scope="row">CSS con reglas repetidas y una tipografía cargada dos veces (<code>@import</code> + <code>&lt;link&gt;</code>)</th><td>Se dividió en nueve archivos por sección, se quitó el <code>@import</code> que bloqueaba el render y se fijó la versión de Devicon.</td></tr>
+              <tr><th scope="row">Las tarjetas «Conocé al resto del equipo» no reaccionaban al cursor como las de la portada</th><td>Se les aplicó la misma microinteracción (elevación, sombra y borde) con hover y foco de teclado, y se anuló con <code>prefers-reduced-motion</code>.</td></tr>
+              <tr><th scope="row">Ninguna animación propia, pero correcciones anteriores pedían pocas y siempre con movimiento reducido</th><td>Se agregó una sola animación de entrada (<code>fadeInUp</code>, 0,5 s, 12 px) dentro de <code>prefers-reduced-motion: no-preference</code>. No hay animaciones infinitas.</td></tr>
+              <tr><th scope="row">Los enlaces de GitHub usaban <code>&lt;aside&gt;</code> y creaban un landmark innecesario para lectores de pantalla</th><td>Se reemplazó por un <code>&lt;div&gt;</code> con su encabezado <code>h3</code>: los perfiles son parte del contenido del equipo, no un complemento.</td></tr>
+              <tr><th scope="row">El <code>aria-label</code> de las tarjetas decía «Abrir perfil de…» pero el texto visible es «Ver perfil»</th><td>Se cambió a «Ver perfil de …» para que el nombre accesible contenga el texto visible (WCAG 2.5.3, control por voz).</td></tr>
+              <tr><th scope="row">El botón de tema usaba <code>aria-pressed</code> y además cambiaba su etiqueta: se anunciaba dos veces</th><td>Se dejó sólo la etiqueta que describe la acción («Cambiar a modo claro / oscuro»).</td></tr>
+              <tr><th scope="row"><code>aria-live</code> estaba en todo el contenedor de la demo y anunciaba también el texto del botón</th><td>Se movió a <code>role="status"</code> sólo en el mensaje que cambia.</td></tr>
+              <tr><th scope="row">El CSS de la portada repetía selectores y conservaba reglas de versiones anteriores</th><td>Se fusionaron los bloques duplicados, se eliminaron reglas sin uso y se ordenó el archivo en seis secciones comentadas.</td></tr>
+              <tr><th scope="row">Modo oscuro sólo por botón y con parpadeo al cargar</th><td>Un script mínimo en el <code>&lt;head&gt;</code> aplica el tema antes de pintar y, sin elección guardada, se usa la preferencia del sistema.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHECKLIST + BOTONES DE NAVEGACIÓN -->
+    <section class="section" aria-labelledby="checklist-titulo">
+      <div class="container">
+        <h2 id="checklist-titulo">Checklist de revisión</h2>
+        <ul class="checklist">
+          <li class="check">✓ HTML5 semántico y navegación interna</li>
+          <li class="check">✓ CSS propio + Google Fonts</li>
+          <li class="check">✓ Responsive 400 / 900 / 1200 px</li>
+          <li class="check">✓ JavaScript en portada y en los 5 perfiles</li>
+          <li class="check">✓ ALT, ARIA y foco visible</li>
+          <li class="check">✓ Imágenes WebP optimizadas con miniaturas</li>
+          <li class="check">✓ Código comentado, indentado y dividido por secciones</li>
+          <li class="check">✓ Foco visible y microinteracción consistente en todas las tarjetas</li>
+          <li class="check">✓ Semántica revisada: sin landmarks de más y nombres accesibles coherentes</li>
+          <li class="check">✓ Sangría uniforme de 2 espacios en HTML, CSS y JavaScript</li>
+          <li class="check">✓ Preferencias: movimiento, contraste y color</li>
+        </ul>
+        <nav class="profile-nav" aria-label="Navegación de la bitácora">
+          <a class="card-link" href="index.html#equipo">Ver equipo</a>
+          <a class="card-link" href="index.html">Inicio</a>
+          <a class="card-link" href="#top">Volver arriba</a>
+        </nav>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER: navegación secundaria, insignias y "Volver arriba" -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <strong>TP1 · Grupo 12 · Eximia Code</strong>
+        <div class="muted">© 2026 · Desarrollo web frontend · HTML5 + CSS3 + JavaScript</div>
+      </div>
+      <nav class="footer-links" aria-label="Navegación del pie">
+        <a href="index.html">Inicio</a>
+        <a href="index.html#equipo">Equipo</a>
+        <a href="bitacora.html">Bitácora</a>
+        <a href="index.html#contacto">Contacto</a>
+      </nav>
+      <div class="tech-badges">
+        <span class="badge">HTML5 semántico</span>
+        <span class="badge">Responsive</span>
+        <span class="badge">ARIA + ALT</span>
+      </div>
+      <a class="footer-skip" href="#top">Volver arriba ↑</a>
+    </div>
+  </footer>
+
+  <script defer src="js/theme.js"></script>
+  <script defer src="js/skip-links.js"></script>
+  <script defer src="js/nav.js"></script>
+</body>
+</html>

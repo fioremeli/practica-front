@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  /* FORMULARIOS: el endpoint AJAX mantiene al usuario en la misma página y permite anunciar el resultado. */
+  /* FORMULARIOS: se localizan por data-contact-form para compartir la misma lógica en portada y perfiles. */
   document.querySelectorAll('form[data-contact-form]').forEach(function (form) {
     const status = form.querySelector('[data-form-status]');
     const fields = Array.from(form.querySelectorAll('input[required], textarea[required]'));
@@ -13,7 +13,9 @@
     const originalButtonText = submitButton?.textContent.trim() || 'Enviar mensaje';
     const successMessage = form.dataset.successMessage ||
       'Mensaje enviado correctamente. ¡Gracias por contactarnos!';
-    const ajaxAction = form.dataset.ajaxAction;
+
+    /* FormSubmit usa /ajax/ para el flujo sin redirección; action queda como respaldo HTML sin JavaScript. */
+    const ajaxAction = form.action.replace('https://formsubmit.co/', 'https://formsubmit.co/ajax/');
 
     function setError(field, message) {
       const error = form.querySelector('#' + field.id + '-error');
@@ -49,7 +51,7 @@
     });
 
     form.addEventListener('submit', async function (event) {
-      /* event.preventDefault() evita la redirección; el envío se realiza contra el endpoint AJAX de FormSubmit. */
+      /* event.preventDefault() evita la redirección y permite anunciar el resultado dentro del sitio. */
       event.preventDefault();
 
       const isValid = fields.map(validateField).every(Boolean);
@@ -61,16 +63,6 @@
           status.focus({ preventScroll: false });
         }
         form.querySelector('[aria-invalid="true"]')?.focus();
-        return;
-      }
-
-      if (!ajaxAction) {
-        if (status) {
-          status.className = 'form-status error';
-          status.setAttribute('role', 'alert');
-          status.textContent = 'El formulario no tiene configurado el envío AJAX.';
-          status.focus({ preventScroll: false });
-        }
         return;
       }
 
@@ -86,7 +78,7 @@
       }
 
       try {
-        /* FormSubmit documenta este endpoint con JSON y Accept: application/json para envíos AJAX. */
+        /* FormSubmit documenta JSON + Accept: application/json para su endpoint AJAX. */
         const payload = Object.fromEntries(new FormData(form).entries());
         const response = await fetch(ajaxAction, {
           method: 'POST',
@@ -97,8 +89,14 @@
           body: JSON.stringify(payload)
         });
 
-        const data = await response.json().catch(function () { return null; });
-        if (!response.ok || !data || data.success !== true) {
+        let data = null;
+        try {
+          data = await response.json();
+        } catch (parseError) {
+          /* Un error HTTP ya es suficiente para rechazar; el parseo sólo aporta información extra. */
+        }
+
+        if (!response.ok || (data && data.success === false)) {
           throw new Error('El servicio de envío respondió con error.');
         }
 
@@ -114,10 +112,11 @@
           status.className = 'form-status success';
           status.setAttribute('role', 'status');
           status.textContent = successMessage;
+          /* El foco queda en la confirmación para que el resultado sea perceptible con teclado y lector de pantalla. */
           status.focus({ preventScroll: false });
         }
       } catch (error) {
-        /* Si falla la red o el servicio, se informa el error sin fingir un envío exitoso. */
+        /* Si falla la red o FormSubmit, se informa el problema sin fingir un envío exitoso. */
         if (status) {
           status.className = 'form-status error';
           status.setAttribute('role', 'alert');

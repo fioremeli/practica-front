@@ -32,7 +32,11 @@
   }
 
   const saved = read();
-  if (saved === 'light' || saved === 'dark') root.dataset.theme = saved;
+  if (saved === 'light' || saved === 'dark') {
+    root.dataset.theme = saved;
+  } else if (systemDark.matches) {
+    root.dataset.theme = 'dark'; // <--- Forzamos el atributo si el sistema es oscuro y no hay guardado previo
+  }
   paint();
 
   button?.addEventListener('click', function () {

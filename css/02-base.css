@@ -1,0 +1,223 @@
+/* ============================================================
+   BASE Y COMPONENTES COMPARTIDOS
+   Reset, tipografía, enlaces, foco, skip-link, botones, encabezados de sección y utilidades.
+   Eximia Code · Grupo 12 · TP1
+   ============================================================ */
+
+/* BASE: evita cálculos inesperados de tamaño y reduce el riesgo de desbordamiento horizontal. */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-main);
+  line-height: 1.6;
+  transition: background .22s,color .22s;
+  overflow-x: clip;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: 3px;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: -100px;
+  background: var(--accent-primary);
+  color: var(--text-on-accent);
+  padding: .7rem 1rem;
+  border-radius: var(--radius-sm);
+  z-index: 9999;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+.container {
+  width: min(calc(100% - 2rem),var(--max));
+  margin-inline: auto;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* H1: unifica los títulos principales de todas las páginas con la misma identidad Orbitron del navbar. */
+h1 {
+  font-family: "Orbitron",sans-serif;
+}
+
+.eyebrow {
+  display: inline-flex;
+  padding: .35rem .65rem;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  color: var(--accent-secondary);
+  font-weight: 800;
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  min-height: 46px;
+  padding: .7rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 2px solid transparent;
+  text-decoration: none;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform var(--transition-speed),background var(--transition-speed),color var(--transition-speed);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: var(--accent-primary);
+  color: var(--text-on-accent);
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+  color: var(--bg-primary);
+}
+
+.btn-secondary {
+  background: transparent;
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+.btn-secondary:hover {
+  background: var(--bg-surface);
+}
+
+/* SECCIONES: espaciado uniforme y scroll-margin facilitan la navegación interna mediante anclas. */
+.section {
+  padding: var(--space-section) 0;
+  scroll-margin-top: calc(var(--header-h) + 16px);
+}
+
+.section.alt {
+  background: var(--bg-secondary);
+}
+
+.section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.section-heading h2 {
+  font-family: var(--heading);
+  font-size: clamp(1.8rem,3vw,2.6rem);
+  margin: 0;
+}
+
+.section-heading p {
+  max-width: 600px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.role {
+  color: var(--accent-secondary);
+  font-weight: 800;
+  font-size: .9rem;
+}
+
+.muted {
+  color: var(--text-secondary);
+}
+
+.card-link {
+  display: inline-flex;
+  margin-top: .8rem;
+  color: var(--accent-secondary);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 1rem;
+}
+
+.role-demo-btn {
+  margin-top: .1rem;
+}
+
+/* FOCO DEL SALTO: deja el H1 suficientemente separado del header fijo para que el título siempre quede visible. */
+#contenido {
+  scroll-margin-top: calc(var(--header-h) + 36px);
+}
+
+#contenido:focus {
+  outline: none;
+}
+
+/* ACCESIBILIDAD: los destinos de salto se mantienen visibles bajo el encabezado fijo sin entrar en el orden natural de Tab. */
+#portada-titulo,
+#perfil-titulo,
+#bitacora-titulo {
+  scroll-margin-top: calc(var(--header-h) + 36px);
+}
+
+/* ANIMACIÓN ÚNICA DE BAJA INTENSIDAD: el bloque principal de cada página aparece con un fundido y un
+   desplazamiento de 12 px, una sola vez y en medio segundo. Sólo se activa si la persona NO pidió
+   reducir el movimiento; con prefers-reduced-motion: reduce el contenido se muestra directamente. */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-grid > div:first-child,
+  .profile-grid > div:last-child {
+    animation: fadeInUp var(--anim-duration) ease-out both;
+  }
+}

@@ -1,0 +1,188 @@
+/* ============================================================
+   LAYOUT GLOBAL · HEADER, NAVEGACIÓN Y FOOTER
+   Cabecera sticky, marca, menú hamburguesa, selector de tema y pie de página.
+   Eximia Code · Grupo 12 · TP1
+   ============================================================ */
+
+/* HEADER/NAV: cabecera sticky para que las rutas principales permanezcan disponibles durante el recorrido. */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: color-mix(in srgb,var(--bg-primary) 94%,transparent);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+/* MARCA: mantiene el nombre junto al logo para una lectura compacta y refuerza la identidad tecnológica con Orbitron. */
+.brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  min-width: 0;
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.brand-name {
+  font-family: "Orbitron",sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  white-space: nowrap;
+}
+
+.navbar {
+  min-height: var(--header-h);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo-img {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+}
+
+[data-theme="dark"] .logo-img {
+  filter: drop-shadow(0 0 14px rgba(255,255,255,.75)) drop-shadow(0 0 30px rgba(72,202,228,.35));
+}
+
+.nav-toggle {
+  display: none;
+}
+
+.nav-list {
+  margin: 0 0 0 auto;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+}
+
+.nav-list a,
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  padding: .65rem .8rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-weight: 700;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.nav-list a:hover,
+.theme-toggle:hover {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+}
+
+.theme-toggle .theme-label {
+  font-size: .85rem;
+}
+
+.theme-icon {
+  font-size: 1.1rem;
+}
+
+/* FOOTER: navegación secundaria y tecnologías, como información complementaria al contenido principal. */
+.site-footer {
+  padding: 2rem 0;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+}
+
+.footer-grid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.tech-badges {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+}
+
+.badge {
+  padding: .3rem .55rem;
+  border-radius: 999px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  font-size: .78rem;
+  font-weight: 800;
+}
+
+/* ACCESIBILIDAD DE MOVIMIENTO: respeta la preferencia del sistema y elimina animaciones no esenciales. */
+/* MENOS MOVIMIENTO */
+/* Responsive safety: Grid/Flex children may shrink without creating page-level overflow. */
+.hero-grid,
+.profile-grid,
+.contact-layout,
+.section-heading,
+.footer-grid,
+.team-card,
+.contact-card {
+  min-width: 0;
+}
+
+/* Logo: halo más intenso y amplio para separar las líneas azules
+   del fondo oscuro. El logo conserva sus colores originales. */
+[data-theme="dark"] .logo-img {
+  filter: drop-shadow(0 0 14px rgba(255,255,255,.75)) drop-shadow(0 0 30px rgba(72,202,228,.35));
+}
+
+/* SALTO DE CONTENIDO: el segundo enlace del pie permite volver al inicio del contenido sin perder el recorrido de teclado. */
+.footer-skip {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  color: var(--accent-secondary);
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  margin-top: .5rem;
+}
+
+.footer-skip:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+/* Icono GitHub de Fiorella: negro en modo claro y blanco en modo oscuro para mantener contraste y coherencia visual. */
+.github-theme-icon {
+  color: var(--mono-on-light) !important;
+}
+
+[data-theme="dark"] .github-theme-icon {
+  color: var(--mono-on-dark) !important;
+}
+
+/* PÁGINA ACTUAL: el enlace activo del menú se distingue por forma (subrayado) además de por color */
+.nav-list a[aria-current="page"] {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}

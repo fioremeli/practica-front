@@ -1,0 +1,337 @@
+/* ============================================================
+   PERFILES · HERO, HABILIDADES, PELÍCULAS Y DISCOS
+   Ficha individual, barra de anclas, tarjetas multimedia y navegación entre perfiles.
+   Eximia Code · Grupo 12 · TP1
+   ============================================================ */
+
+/* PERFIL: la composición usa Grid para separar presentación y contenido visual sin depender de frameworks. */
+/* PERFIL: Grid mantiene texto a la izquierda y fotografía a la derecha en tablet y escritorio; esto crea una lectura en dos columnas y aprovecha mejor el espacio horizontal. La foto usa un límite visual de 600px aunque el archivo físico sea 1200x1200 para conservar nitidez y evitar CLS con width/height declarados. */
+.profile-hero {
+  padding: 4rem 0 3rem;
+  background: linear-gradient(135deg,var(--bg-secondary),var(--bg-primary));
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+  gap: 3rem;
+  align-items: center;
+}
+
+.profile-hero h1 {
+  font-family: "Orbitron",sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.5rem,5vw,4.5rem);
+  line-height: 1;
+  margin: .4rem 0;
+}
+
+.profile-photo {
+  margin: 0;
+  justify-self: start;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.profile-photo img {
+  width: 100%;
+  max-width: 600px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 22px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+  display: block;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  margin: 1rem 0;
+}
+
+.meta span {
+  padding: .4rem .7rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.anchor-bar {
+  position: sticky;
+  top: var(--header-h);
+  z-index: 900;
+  background: var(--bg-primary);
+  border-block: 1px solid var(--border-color);
+}
+
+.anchor-list {
+  display: flex;
+  gap: .4rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: .65rem 0;
+  margin: 0;
+  list-style: none;
+  scrollbar-width: thin;
+}
+
+.anchor-list li {
+  flex: 0 0 auto;
+}
+
+.anchor-list a {
+  white-space: nowrap;
+  text-decoration: none;
+  padding: .55rem .7rem;
+  border-radius: 9px;
+  font-weight: 800;
+  color: var(--text-secondary);
+}
+
+.anchor-list a:hover {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 1rem;
+}
+
+.skill {
+  padding: 1.2rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.skill i,
+.skill-icon {
+  font-size: 2.5rem;
+  color: var(--icon-color);
+  font-weight: 800;
+}
+
+.skill-icon {
+  display: block;
+  letter-spacing: .02em;
+}
+
+.skill strong {
+  display: block;
+  margin-top: .5rem;
+}
+
+.movie-card,
+.album-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.movie-card img {
+  width: 100%;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+}
+
+.movie-info,
+.album-info {
+  padding: 1rem;
+}
+
+.movie-info h3,
+.album-title {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.album-artist {
+  margin: .2rem 0 0;
+  color: var(--text-secondary);
+}
+
+.album-media {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 1/1;
+  background: var(--media-bg);
+  overflow: hidden;
+}
+
+.album-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .3s;
+}
+
+.album-card:hover .album-img {
+  transform: scale(1.03);
+}
+
+.play-btn {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 0;
+  background: var(--spotify-green);
+  color: var(--on-spotify);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: .25s;
+  box-shadow: 0 8px 16px rgba(0,0,0,.3);
+}
+
+.play-btn svg {
+  width: 22px;
+}
+
+.album-card:hover .play-btn,
+.album-card:focus-within .play-btn {
+  opacity: 1;
+  transform: none;
+}
+
+.album-card iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.profile-nav {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 1rem;
+  align-items: stretch;
+  padding: 2rem 0;
+}
+
+.profile-nav .card-link {
+  margin-top: 0;
+  width: 100%;
+  min-width: 0;
+  min-height: 52px;
+  padding: .75rem .6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.rest-grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 1rem;
+}
+
+/* TARJETAS «CONOCÉ AL RESTO DEL EQUIPO»: misma microinteracción que las tarjetas de la portada
+   (elevación + sombra + borde de acento) para que el sitio se comporte de forma consistente. */
+.rest-card {
+  display: block;
+  padding: 1rem;
+  text-decoration: none;
+  color: inherit;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  transition: transform var(--transition-speed),box-shadow var(--transition-speed),border-color var(--transition-speed);
+}
+
+.rest-card:hover,
+.rest-card:focus-visible {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 30px rgba(7,13,31,.16);
+  border-color: var(--accent-secondary);
+}
+
+.rest-card:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: 3px;
+}
+
+.rest-card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+}
+
+.rest-card h3 {
+  margin: .6rem 0 .1rem;
+  font-size: 1rem;
+}
+
+/* El anchor bar puede ocupar dos líneas en pantallas estrechas,
+   pero nunca genera scroll horizontal. */
+.anchor-bar {
+  overflow-x: hidden;
+}
+
+.anchor-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: .15rem;
+  padding: .35rem 0;
+  overflow: visible;
+}
+
+.anchor-list li {
+  min-width: 0;
+}
+
+.anchor-list a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: normal;
+  text-align: center;
+  padding: .4rem .5rem;
+  font-size: .88rem;
+  line-height: 1.15;
+}
+
+/* ICONOS DE STACK: Kafka conserva su marca blanca sobre la tarjeta. */
+.skill i.skill-kafka {
+  color: var(--mono-on-dark);
+}
+
+/* ICONO FIGMA: SVG segmentado mantiene los cinco colores característicos de la marca. */
+.skill .figma-logo {
+  display: grid;
+  place-items: center;
+  color: transparent;
+}
+
+.skill .figma-logo svg {
+  width: 2.5rem;
+  height: 3.75rem;
+  display: block;
+}
+
+/* KAFKA: negro sobre fondo claro y blanco sobre fondo oscuro para conservar la lectura del logotipo. */
+.skill-kafka {
+  color: var(--mono-on-light) !important;
+}
+
+[data-theme="dark"] .skill-kafka {
+  color: var(--mono-on-dark) !important;
+}

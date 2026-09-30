@@ -1,0 +1,67 @@
+/* ============================================================
+   PREFERENCIAS DEL USUARIO Y ACCESIBILIDAD
+   prefers-reduced-motion, prefers-contrast, forced-colors, prefers-color-scheme e impresión.
+   Eximia Code · Grupo 12 · TP1
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto!important;
+    transition: none!important;
+    animation: none!important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .form-status {
+    transition: none;
+  }
+}
+
+/* REDUCED MOTION: elimina elevación, transiciones y transformaciones para usuarios que prefieren menos movimiento. */
+@media (prefers-reduced-motion: reduce) {
+  .team-card,
+  .rest-card,
+  .team-card-profile-link,
+  .team-card img,
+  .team-card .card-profile-label {
+    transition: none !important;
+  }
+  .rest-card:hover,
+  .rest-card:focus-visible {
+    transform: none;
+    box-shadow: var(--shadow-sm);
+  }
+  .team-card:hover {
+    transform: none;
+    box-shadow: var(--shadow-sm);
+  }
+  .team-card-profile-link:hover .card-profile-label {
+    text-decoration: none;
+  }
+}
+
+/* ---------- ALTO CONTRASTE (prefers-contrast: more) ---------- */
+@media (prefers-contrast: more) {
+  :root:not([data-theme="dark"]) { --border-color: #000000; --text-secondary: #000000; --accent-secondary: #003B54; --accent-primary: #004D39; }
+  [data-theme="dark"] { --border-color: #FFFFFF; --accent-secondary: #8FE3FF; }
+  * { box-shadow: none !important; }
+  .hero, .profile-hero { background: var(--bg-primary); }
+  a, .card-link { text-decoration: underline; }
+  :focus-visible { outline-width: 4px; }
+}
+
+/* ---------- MODO DE COLORES FORZADOS (Windows alto contraste) ---------- */
+@media (forced-colors: active) {
+  .btn, .card-link, .team-card, .github-list a, .theme-toggle, .nav-toggle { border: 2px solid ButtonText; }
+  .play-btn { border: 2px solid ButtonText; forced-color-adjust: none; background: ButtonFace; color: ButtonText; }
+  :focus-visible { outline: 3px solid Highlight; }
+}
+
+/* ---------- IMPRESIÓN: se ocultan controles que no aportan en papel ---------- */
+@media print {
+  .site-header, .anchor-bar, .contact-form, .nav-toggle, .theme-toggle, .skip-link, .footer-skip, .play-btn { display: none !important; }
+  body { background: #FFF; color: #000; }
+}

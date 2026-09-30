@@ -1,0 +1,263 @@
+/* ============================================================
+   RESPONSIVE · BREAKPOINTS 1200, 900 Y 400 PX
+   Media queries obligatorias de la consigna, ordenadas de mayor a menor.
+   Eximia Code · Grupo 12 · TP1
+   ============================================================ */
+
+/* NAVEGACIÓN INFERIOR: tres columnas iguales mantienen anterior/equipo, inicio y siguiente centrados y distribuidos; esto evita acumulación a la izquierda en móviles. */
+@media (max-width: 767px) {
+  .profile-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .profile-photo {
+    justify-self: stretch;
+    justify-content: center;
+  }
+  .profile-photo img {
+    max-width: 600px;
+  }
+  .profile-nav {
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    gap: .35rem;
+  }
+  .profile-nav .card-link {
+    font-size: .78rem;
+    padding: .65rem .35rem;
+    line-height: 1.25;
+  }
+}
+
+/* BREAKPOINT 1200: reduce columnas para conservar legibilidad en desktop compacto/tablet horizontal. */
+/* <=1200: se compactan grids sin perder legibilidad */
+@media (max-width: 1200px) {
+  .team-grid {
+    grid-template-columns: repeat(3,minmax(0,1fr));
+  }
+  .hero-grid {
+    gap: 2rem;
+  }
+  .rest-grid {
+    grid-template-columns: repeat(3,minmax(0,1fr));
+  }
+  .skills-grid {
+    grid-template-columns: repeat(3,minmax(0,1fr));
+  }
+  .media-grid {
+    grid-template-columns: repeat(3,minmax(0,1fr));
+  }
+}
+
+/* BREAKPOINT 900: convierte el menú en desplegable y reorganiza los grids para tablet/móvil. */
+/* <=900: tablet */
+@media (max-width: 900px) {
+  .nav-toggle {
+    display: inline-flex;
+    margin-left: auto;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    cursor: pointer;
+  }
+  .nav-list {
+    display: none;
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    top: 68px;
+    padding: .6rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .nav-list.is-open {
+    display: flex;
+  }
+  .nav-list a,
+  .theme-toggle {
+    justify-content: flex-start;
+  }
+  .hero-grid,
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+  .profile-photo {
+    justify-self: end;
+  }
+  .profile-photo img {
+    width: 100%;
+    max-width: 600px;
+  }
+  .skills-grid {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+  .media-grid {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+  .rest-grid {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+/* BREAKPOINT 400: prioriza una sola columna, botones amplios y navegación sin overflow en móvil pequeño. */
+/* <=400: móvil pequeño; todos los componentes caben sin scroll horizontal */
+@media (max-width: 400px) {
+  .container {
+    width: min(calc(100% - 1rem),var(--max));
+  }
+  /* Header más bajo: al redefinir la variable, el navbar y la barra de anclas se ajustan juntos. */
+  :root {
+    --header-h: 64px;
+  }
+  .logo-img {
+    width: 40px;
+    height: 40px;
+  }
+  .theme-toggle .theme-label {
+    display: none;
+  }
+  .hero {
+    padding: 3rem 0;
+  }
+  .hero h1 {
+    font-size: 2.15rem;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
+  .hero-actions .btn {
+    width: 100%;
+  }
+  .section {
+    padding: 3rem 0;
+  }
+  .team-grid,
+  .media-grid,
+  .skills-grid,
+  .rest-grid,
+  .stats {
+    grid-template-columns: 1fr;
+  }
+  .media-grid {
+    gap: .8rem;
+  }
+  .contact-card {
+    padding: 1rem;
+  }
+  .form-grid {
+    gap: .75rem;
+  }
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  .field.full {
+    grid-column: auto;
+  }
+  .profile-hero h1 {
+    font-size: 2.5rem;
+  }
+  .anchor-list {
+    gap: .1rem;
+  }
+  .anchor-list a {
+    font-size: .82rem;
+  }
+  .footer-grid {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .play-btn {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (min-width: 401px) and (max-width:899px) {
+  .team-grid {
+    grid-template-columns: repeat(2,1fr);
+  }
+}
+
+/* Estructura móvil: Logo + toggle + hamburguesa. */
+@media (max-width: 900px) {
+  .navbar {
+    position: relative;
+    gap: .45rem;
+  }
+  .brand-link {
+    min-width: 0;
+  }
+  .logo-img {
+    width: 42px;
+    height: 42px;
+  }
+  .navbar > .theme-toggle {
+    margin-left: auto;
+    flex: 0 0 auto;
+  }
+  .nav-toggle {
+    margin-left: 0;
+    flex: 0 0 44px;
+  }
+  .nav-list {
+    top: calc(100% + .45rem);
+    z-index: 1000;
+  }
+  .nav-list a {
+    gap: .65rem;
+  }
+  .anchor-list {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 400px) {
+  .navbar {
+    gap: .25rem;
+  }
+  .logo-img {
+    width: 38px;
+    height: 38px;
+  }
+  .navbar > .theme-toggle {
+    width: 42px;
+    height: 42px;
+    padding: .35rem;
+    justify-content: center;
+  }
+  .theme-toggle .theme-label {
+    display: none;
+  }
+  .theme-icon {
+    font-size: 1.15rem;
+  }
+  .nav-toggle {
+    width: 42px;
+    height: 42px;
+    flex-basis: 42px;
+  }
+  .anchor-list {
+    gap: .05rem;
+    padding: .25rem 0;
+  }
+  .anchor-list a {
+    font-size: .72rem;
+    padding: .32rem .35rem;
+    border-radius: 7px;
+  }
+  .dynamic-message {
+    min-height: 4.2em;
+  }
+}

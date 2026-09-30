@@ -1,0 +1,98 @@
+/* ============================================================
+   VARIABLES · SISTEMA DE DISEÑO
+   Paleta, tipografías, foco, radios y sombras centralizados.
+   El tema oscuro se activa por botón (data-theme) o, si la persona
+   no eligió nada, por la preferencia del sistema (prefers-color-scheme).
+   Eximia Code · Grupo 12 · TP1
+   ============================================================ */
+
+/* TEMA CLARO (por defecto) */
+:root {
+  color-scheme: light dark;
+
+  /* Fondos y textos */
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F4F7F6;
+  --bg-surface: #E3EBE8;
+  --text-primary: #070D1F;
+  --text-secondary: #1E293B;
+  --text-on-accent: #FFFFFF;
+
+  /* Bordes, iconos, foco y errores */
+  --border-color: #3A506B;
+  --icon-color: #005F73;
+  --focus-ring: #D9381E;
+  --error-color: #B42318;
+  --focus-outline: 3px solid var(--focus-ring);
+
+  /* Acentos */
+  --accent-primary: #00684D;
+  --accent-secondary: #005A80;
+  --accent-hover: #070D1F;
+
+  /* Sombras y movimiento */
+  --shadow-sm: 0 2px 8px rgba(7, 13, 31, .06);
+  --shadow-md: 0 4px 16px rgba(7, 13, 31, .10);
+  --transition-speed: .22s;
+
+  /* Tipografías (Google Fonts con alternativas del sistema) */
+  --font-main: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --heading: 'Space Grotesk', var(--font-main);
+
+  /* Medidas: radios, ancho máximo, altura del header y espaciado de secciones */
+  --radius: 18px;
+  --radius-md: 16px;
+  --radius-sm: 10px;
+  --max: 1180px;
+  --header-h: 74px;
+  --space-section: 4.5rem;
+  --space-gap: 1rem;
+
+  /* Colores de marca que no cambian con el tema */
+  --media-bg: #121212;
+  --spotify-green: #1ED760;
+  --on-spotify: #000000;
+  --mono-on-light: #000000;
+  --mono-on-dark: #FFFFFF;
+
+  /* Animación única de baja intensidad (ver @keyframes fadeInUp en 02-base.css) */
+  --anim-duration: .5s;
+}
+
+/* TEMA OSCURO ELEGIDO CON EL BOTÓN */
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg-primary: #0B132B;
+  --bg-secondary: #111C3D;
+  --bg-surface: #1C2541;
+  --text-primary: #FFFFFF;
+  --text-secondary: #E4E9F0;
+  --text-on-accent: #070D1F;
+  --border-color: #6B829B;
+  --icon-color: #90E0EF;
+  --focus-ring: #FFB703;
+  --error-color: #FF9B91;
+  --accent-primary: #06D6A0;
+  --accent-secondary: #48CAE4;
+  --accent-hover: #00B4D8;
+}
+
+/* TEMA OSCURO AUTOMÁTICO: sólo si el sistema lo pide y no hay elección manual de tema claro */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg-primary: #0B132B;
+    --bg-secondary: #111C3D;
+    --bg-surface: #1C2541;
+    --text-primary: #FFFFFF;
+    --text-secondary: #E4E9F0;
+    --text-on-accent: #070D1F;
+    --border-color: #6B829B;
+    --icon-color: #90E0EF;
+    --focus-ring: #FFB703;
+    --error-color: #FF9B91;
+    --accent-primary: #06D6A0;
+    --accent-secondary: #48CAE4;
+    --accent-hover: #00B4D8;
+  }
+}

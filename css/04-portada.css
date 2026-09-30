@@ -1,0 +1,270 @@
+/* ============================================================
+   PORTADA · HERO, EQUIPO, GITHUB Y ESTADÍSTICAS
+   Presentación principal, demo dinámica, grilla del equipo,
+   enlaces a GitHub y cifras del proyecto.
+   Eximia Code · Grupo 12 · TP1
+   ============================================================ */
+
+/* ---------- 1. HERO ----------
+   Jerarquiza la propuesta principal y mantiene una CTA clara sin saturar la interfaz. */
+.hero {
+  padding: 5rem 0 4rem;
+  background: linear-gradient(135deg, var(--bg-secondary), var(--bg-primary));
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.hero h1 {
+  font-family: "Orbitron", sans-serif;
+  font-size: clamp(2.3rem, 5vw, 4.4rem);
+  line-height: 1.02;
+  margin: .9rem 0 1rem;
+  max-width: 850px;
+}
+
+.hero p {
+  font-size: 1.08rem;
+  color: var(--text-secondary);
+  max-width: 680px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .8rem;
+  margin-top: 1.5rem;
+}
+
+/* Imagen del panel: el archivo es 1200x1200; se muestra cuadrada y sin deformarse. */
+.hero-media {
+  margin: 0;
+}
+
+.hero-media img {
+  width: 100%;
+  max-width: 560px;
+  margin-inline: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 24px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+}
+
+/* ---------- 2. DEMO DINÁMICA ----------
+   Composición estable: frase arriba y botón debajo, para que el cambio de texto
+   no mueva el botón entre clics. */
+.dynamic-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .55rem;
+  margin-top: 1.2rem;
+  padding: 1rem;
+  border: 1px dashed var(--border-color);
+  border-radius: 14px;
+  background: var(--bg-surface);
+}
+
+.dynamic-box > strong {
+  display: block;
+}
+
+.dynamic-message {
+  margin: 0;
+  min-height: 2.8em;
+  line-height: 1.45;
+  max-width: 62ch;
+}
+
+/* ---------- 3. EQUIPO ---------- */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+
+/* Superficie común de las tarjetas. */
+.team-card,
+.contact-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+/* Tarjeta de integrante: toda la tarjeta es un único enlace al perfil.
+   El texto "Ver perfil" forma parte del contenido: evita destinos duplicados
+   y amplía el área de interacción. */
+.team-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  transition:
+    transform var(--transition-speed),
+    box-shadow var(--transition-speed),
+    border-color var(--transition-speed);
+}
+
+.team-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 30px rgba(7, 13, 31, .16);
+  border-color: var(--accent-secondary);
+}
+
+.team-card-profile-link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-width: 0;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Offset negativo: la tarjeta tiene overflow hidden y recortaría el foco por fuera. */
+.team-card-profile-link:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: -4px;
+  border-radius: var(--radius);
+}
+
+.team-card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.team-card-body {
+  flex: 1;
+  min-width: 0;
+  padding: 1rem;
+}
+
+.team-card h3 {
+  margin: .2rem 0;
+}
+
+.card-profile-label {
+  display: inline-block;
+  margin-top: .45rem;
+  color: var(--accent-secondary);
+  font-weight: 800;
+}
+
+.team-card-profile-link:hover .card-profile-label {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- 4. PERFILES DE GITHUB ----------
+   Enlaces externos a los perfiles personales del equipo. */
+.github-section {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.github-heading {
+  margin: 0 0 .8rem;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.github-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .6rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.github-list li {
+  margin: 0;
+  padding: 0;
+}
+
+.github-list a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .4rem;
+  min-height: 44px;
+  padding: .5rem .9rem;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    background-color var(--transition-speed),
+    border-color var(--transition-speed);
+}
+
+.github-list a:hover {
+  background: var(--bg-primary);
+  border-color: var(--accent-secondary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.github-list a:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: 3px;
+}
+
+.github-list i {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+/* ---------- 5. ESTADÍSTICAS ----------
+   Lista semántica (<ul>) presentada como tres bloques en grilla. */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stat {
+  padding: 1.2rem;
+  border-left: 4px solid var(--accent-primary);
+  background: var(--bg-surface);
+  border-radius: 0 14px 14px 0;
+}
+
+.stat strong {
+  display: block;
+  font: 700 1.5rem var(--heading);
+}
+
+/* ---------- 6. UTILIDADES DE TEXTO E IMAGEN ---------- */
+
+/* Textos largos: nunca provocan scroll horizontal. */
+.hero p,
+.section-heading p,
+.muted,
+.role,
+.dynamic-message {
+  overflow-wrap: anywhere;
+}
+
+/* Las imágenes son bloques: evita el hueco inferior de las imágenes en línea. */
+.team-card img,
+.profile-photo img,
+.movie-card img,
+.album-img,
+.rest-card img {
+  display: block;
+}

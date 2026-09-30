@@ -1,0 +1,85 @@
+/* ============================================================
+   FORMULARIOS DE CONTACTO
+   Grilla de campos, estados de error y mensajes de envío.
+   Eximia Code · Grupo 12 · TP1
+   ============================================================ */
+
+/* FORMULARIO: Grid separa información y formulario en escritorio y colapsa a una columna en pantallas pequeñas. */
+.contact-layout {
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: 1.2rem;
+}
+
+.contact-card {
+  padding: 1.5rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+
+.field.full {
+  grid-column: 1/-1;
+}
+
+.field label {
+  font-weight: 800;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  padding: .75rem;
+}
+
+.field textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+/* Validación y estado del formulario de contacto */
+.form-help {
+  margin: .25rem 0 1rem;
+  color: var(--text-secondary);
+  font-size: .92rem;
+}
+
+.form-error {
+  min-height: 1.25rem;
+  margin: 0;
+  color: var(--error-color);
+  font-size: .88rem;
+  font-weight: 700;
+}
+
+.form-status {
+  min-height: 1.5rem;
+  margin: .75rem 0 0;
+  font-weight: 700;
+}
+
+.form-status.success {
+  color: var(--accent-primary);
+}
+
+.form-status.error {
+  color: var(--error-color);
+}
+
+.field input[aria-invalid="true"],
+.field textarea[aria-invalid="true"] {
+  border-color: var(--error-color);
+}
